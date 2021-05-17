@@ -58,11 +58,13 @@ namespace timeline
 
                 foreach (var evt in indi.Events)
                 {
-                    AddTE(PersonName(indi), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
+                    if (evt.GedDate != null)
+                        AddTE(PersonName(indi), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
                 }
                 foreach (var evt in indi.Attribs) // For RESI, CENS
                 {
-                    AddTE(PersonName(indi), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
+                    if (evt.GedDate != null)
+                        AddTE(PersonName(indi), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
                 }
             }
 
@@ -72,8 +74,11 @@ namespace timeline
                 {
                     var father = _reader.GetDad(fam);
                     var mother = _reader.GetMom(fam);
-                    AddTE(PersonName(father), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
-                    AddTE(PersonName(mother), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
+                    if (evt.GedDate != null)
+                    {
+                        AddTE(PersonName(father), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
+                        AddTE(PersonName(mother), evt.Tag, evt.GedDate.Initialized ? evt.GedDate.ToString() : evt.Date, evt.Place);
+                    }
                 }
             }
             return TEList;

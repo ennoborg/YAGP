@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TravisCore": {
+      "commandName": "Project",
+      "commandLineArgs": "D:\\MEGAsync\\Untitled_1.ged"
+    }
+  }
+}

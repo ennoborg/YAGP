@@ -33,10 +33,13 @@ namespace timeline
             string resourcename = appname + dll[0] + ".dll"; // element [0] contains the missing resource name
             Assembly MyAssembly = Assembly.GetExecutingAssembly();
             Stream AssemblyStream = MyAssembly.GetManifestResourceStream(resourcename);
-            byte[] raw = new byte[AssemblyStream.Length];
-            AssemblyStream.Read(raw, 0, raw.Length);
-            return Assembly.Load(raw);
-
+            if (AssemblyStream != null)
+            {
+                byte[] raw = new byte[AssemblyStream.Length];
+                AssemblyStream.Read(raw, 0, raw.Length);
+                return Assembly.Load(raw);
+            }
+            return null;
         }
         
         
